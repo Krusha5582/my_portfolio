@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       className="
-        relative w-full py-32 md:py-40
+        relative w-full py-20 md:py-28
         bg-theme 
         text-theme 
         overflow-hidden
@@ -24,21 +24,20 @@ export default function Hero() {
 
         {/* Profile Photo */}
         <div
-  className="
-    w-40 h-52 md:w-48 md:h-60 
-    rounded-3xl overflow-hidden
-    bg-card border border-card
-    shadow-xl backdrop-blur-2xl
-    mb-10
-  "
->
-  <img
-    src="/photo.jpg"
-    alt="Krusha Parikh"
-    className="w-full h-full object-cover"
-  />
-</div>
-
+          className="
+            w-40 h-52 md:w-48 md:h-60 
+            rounded-3xl overflow-hidden
+            bg-card border border-card
+            shadow-xl backdrop-blur-2xl
+            mb-8
+          "
+        >
+          <img
+            src="/photo.jpg"
+            alt="Krusha Parikh"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         {/* Name */}
         <h1
@@ -52,22 +51,29 @@ export default function Hero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-4 max-w-xl text-lg md:text-xl text-theme-soft leading-relaxed">
+        <p className="mt-3 max-w-xl text-lg md:text-xl text-theme-soft leading-relaxed">
           Analytical • Impact-Driven • Evolving
         </p>
 
         {/* Tagline */}
         <p className="mt-2 max-w-2xl text-theme-soft">
-          Computer Engineering Student crafting data-driven, secure, and meaningful solutions for real-world impact.
+          Computer Engineering Student crafting data-driven, secure,
+          and meaningful solutions for real-world impact.
         </p>
 
         {/* CTA Button */}
         <a
-  href="/resume"
-  className="mt-8 inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-lavender to-neonLilac text-white shadow-md hover:shadow-xl hover:scale-[1.03] transition-all"
->
-  View Resume
-</a>
+          href="/resume"
+          className="
+            mt-6 inline-block px-6 py-3 rounded-xl
+            bg-gradient-to-r from-lavender to-neonLilac
+            text-white shadow-md 
+            hover:shadow-xl hover:scale-[1.03]
+            transition-all
+          "
+        >
+          View Resume
+        </a>
 
       </div>
     </section>

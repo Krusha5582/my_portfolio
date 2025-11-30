@@ -23,7 +23,7 @@ export default function SecureAnalyzeBuild() {
   ];
 
   return (
-    <section className="w-full py-24 md:py-32 bg-theme text-theme">
+    <section className="w-full py-20 md:py-24 bg-theme text-theme">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Section Title */}
@@ -38,7 +38,7 @@ export default function SecureAnalyzeBuild() {
         </h2>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-8">
           {pillars.map((item, index) => (
             <div
               key={index}
@@ -60,20 +60,18 @@ export default function SecureAnalyzeBuild() {
               {/* Glass Card */}
               <div
                 className="
-                  bg-card backdrop-blur-xl rounded-2xl p-8 
-                  border border-card
+                  bg-card backdrop-blur-xl rounded-2xl 
+                  p-6 md:p-7 border border-card
                   transition-all duration-300
                 "
               >
                 {/* Icon */}
-                <div className="mb-4">
-                  {item.icon}
-                </div>
+                <div className="mb-3">{item.icon}</div>
 
                 {/* Title */}
                 <h3
                   className="
-                    text-xl font-semibold mb-3
+                    text-xl font-semibold mb-2
                     bg-gradient-to-r from-lavender to-neonLilac
                     text-transparent bg-clip-text
                   "

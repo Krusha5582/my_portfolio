@@ -2,13 +2,13 @@ import { experience } from "../data/experience";
 
 export default function Experience() {
   return (
-    <section className="w-full py-24 md:py-32 bg-theme text-theme transition-colors">
+    <section className="w-full py-16 bg-theme text-theme transition-colors">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Title */}
         <h2
           className="
-            text-3xl md:text-4xl font-bold tracking-tight mb-12
+            text-3xl md:text-4xl font-bold tracking-tight mb-10
             bg-gradient-to-r from-lavender via-neonLilac to-icyCyan
             text-transparent bg-clip-text
           "
@@ -23,9 +23,7 @@ export default function Experience() {
             className="
               absolute left-0 top-0 w-[3px] h-full
               bg-gradient-to-b from-lavender to-icyCyan
-              opacity-80
-              rounded-full
-              dark:shadow-[0_0_20px_#B881FF]
+              opacity-80 rounded-full
             "
           />
 
@@ -33,20 +31,18 @@ export default function Experience() {
           <div
             className="
               absolute left-[1px] top-0 w-[1px] h-full
-              dark:bg-white/20 bg-black/20
               bg-[linear-gradient(to_bottom,transparent_0%,transparent_70%,rgba(255,255,255,0.3)_70%,transparent_100%)]
-              bg-[length:4px_20px]
-              opacity-60
+              bg-[length:4px_20px] opacity-50
             "
           />
 
           {/* Timeline Items */}
-          <div className="space-y-16 relative z-10">
+          <div className="space-y-12 relative z-10">
 
             {experience.map((item, i) => (
               <div key={i} className="relative pl-10">
 
-                {/* Node with neon pulse */}
+                {/* Neon Node */}
                 <div
                   className="
                     absolute left-[-9px] top-1
@@ -57,7 +53,7 @@ export default function Experience() {
                   "
                 />
 
-                {/* Cyber connector → card */}
+                {/* Connector Line */}
                 <div
                   className="
                     absolute left-0 top-4 w-6 h-[1px]
@@ -66,11 +62,11 @@ export default function Experience() {
                   "
                 ></div>
 
-                {/* Experience Card */}
+                {/* Card */}
                 <div
                   className="
                     bg-card border border-card
-                    p-6 md:p-7 rounded-2xl shadow-xl backdrop-blur-xl
+                    p-6 rounded-2xl shadow-xl backdrop-blur-xl
                     hover:scale-[1.02] hover:shadow-2xl
                     transition-all duration-300
                   "
@@ -95,6 +91,7 @@ export default function Experience() {
                     ))}
                   </ul>
                 </div>
+
               </div>
             ))}
 

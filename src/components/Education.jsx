@@ -17,13 +17,13 @@ export default function Education() {
   ];
 
   return (
-    <section className="w-full py-24 md:py-32 bg-theme text-theme">
+    <section className="w-full py-20 md:py-24 bg-theme text-theme">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* HEADING */}
         <h2
           className="
-            text-3xl md:text-4xl font-bold tracking-tight mb-12
+            text-3xl md:text-4xl font-bold tracking-tight mb-10
             bg-gradient-to-r from-lavender via-neonLilac to-icyCyan
             text-transparent bg-clip-text
           "
@@ -32,24 +32,23 @@ export default function Education() {
         </h2>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid md:grid-cols-2 gap-8">
           {education.map((item, i) => (
             <div
               key={i}
               className="
-                relative rounded-2xl shadow-xl backdrop-blur-xl
+                relative rounded-2xl shadow-lg backdrop-blur-xl
                 bg-card border border-card
                 hover:shadow-neonLilac/20 hover:scale-[1.02]
                 transition-all overflow-hidden
               "
             >
-
               {/* Gradient Ribbon Header */}
               <div
                 className="
-                  w-full py-3 px-5
+                  w-full py-2.5 px-4
                   bg-gradient-to-r from-lavender via-neonLilac to-icyCyan
-                  text-white font-semibold text-lg
+                  text-white font-semibold text-base
                   tracking-wide shadow-md
                 "
               >
@@ -60,19 +59,22 @@ export default function Education() {
               <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-lavender/70 to-icyCyan/70"></div>
 
               {/* Neon Dot */}
-              <span className="
-                absolute left-0 top-6 -translate-x-1/2 
-                w-3 h-3 rounded-full 
-                bg-gradient-to-r from-lavender to-icyCyan
-                shadow-[0_0_10px_#B881FF]
-              " />
+              <span
+                className="
+                  absolute left-0 top-6 -translate-x-1/2 
+                  w-2.5 h-2.5 rounded-full 
+                  bg-gradient-to-r from-lavender to-icyCyan
+                  shadow-[0_0_10px_#B881FF]
+                "
+              />
 
               {/* Card Body */}
-              <div className="p-6 md:p-8 space-y-2">
+              <div className="p-5 md:p-6 space-y-1.5">
                 <p className="font-medium text-theme">{item.school}</p>
                 <p className="text-theme-soft text-sm">{item.period}</p>
                 <p className="text-theme-soft text-sm">CGPA: {item.cgpa}</p>
-                <p className="text-theme-soft leading-relaxed pt-2">
+
+                <p className="text-theme-soft leading-relaxed pt-2 text-sm">
                   {item.desc}
                 </p>
               </div>
