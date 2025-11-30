@@ -63,18 +63,12 @@ export default function Hero() {
 
         {/* CTA Button */}
         <a
-          href="/resume"
-          className="
-            mt-8 inline-block px-6 py-3
-            rounded-xl font-medium
-            bg-gradient-to-r from-lavender to-neonLilac
-            text-white shadow-md
-            hover:shadow-xl hover:scale-[1.03]
-            transition-all
-          "
-        >
-          View Resume
-        </a>
+  href="/resume"
+  className="mt-8 inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-lavender to-neonLilac text-white shadow-md hover:shadow-xl hover:scale-[1.03] transition-all"
+>
+  View Resume
+</a>
+
       </div>
     </section>
   );

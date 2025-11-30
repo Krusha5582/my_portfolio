@@ -17,11 +17,12 @@ import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
-    <div className="text-white">
+    <div className="min-h-screen bg-theme text-theme transition-colors duration-300">
+      {/* Global Navbar */}
       <Navbar />
 
+      {/* Page Routing */}
       <Routes>
-        {/* Main landing page */}
         <Route path="/" element={<Home />} />
 
         {/* Projects */}
@@ -45,6 +46,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
 
+      {/* Global Footer */}
       <Footer />
     </div>
   );
