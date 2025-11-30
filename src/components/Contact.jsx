@@ -62,14 +62,13 @@ export default function Contact() {
 
       const data = await res.json();
 
-      if (data.success === "true") {
-        e.target.reset();
-        playChime();
-        launchGodConfetti();
+      if (data.success === "true" || data.success === true || data.status === "success") {
+  e.target.reset();
+  playChime();
+  launchGodConfetti();
+  setSubmitted(true);
+}
 
-        // transform to success card
-        setSubmitted(true);
-      }
     } catch {
       alert("Network error!");
     }
