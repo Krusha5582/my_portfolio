@@ -13,58 +13,58 @@ export default function Home() {
     <div className="page-transition bg-theme text-theme">
 
       {/* HERO */}
-      <section id="hero" className="pt-24 bg-theme text-theme">
+      <section id="hero" className="pt-20 bg-theme text-theme">
         <Hero />
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="py-24 bg-theme text-theme">
+      <section id="about" className="py-20 bg-theme text-theme">
         <About />
       </section>
 
       {/* SKILLS */}
       <section
         id="skills"
-        className="py-24 bg-theme-soft backdrop-blur-xl border-y border-card"
+        className="py-20 bg-theme-soft backdrop-blur-xl border-y border-card"
       >
         <Skills />
       </section>
 
       {/* SECURE • ANALYZE • BUILD */}
-      <section id="sab" className="py-24 bg-theme text-theme">
+      <section id="sab" className="py-20 bg-theme text-theme">
         <SecureAnalyzeBuild />
       </section>
 
       {/* FEATURED PROJECTS */}
       <section
         id="projects"
-        className="py-24 bg-theme-soft backdrop-blur-xl border-y border-card"
+        className="py-20 bg-theme-soft backdrop-blur-xl border-y border-card"
       >
         <Projects />
       </section>
 
       {/* EXPERIENCE */}
-      <section id="experience" className="py-24 bg-theme text-theme">
+      <section id="experience" className="py-20 bg-theme text-theme">
         <Experience />
       </section>
 
       {/* EDUCATION */}
       <section
         id="education"
-        className="py-24 bg-theme-soft backdrop-blur-xl border-y border-card"
+        className="py-20 bg-theme-soft backdrop-blur-xl border-y border-card"
       >
         <Education />
       </section>
 
       {/* CERTIFICATIONS */}
-      <section id="certifications" className="py-24 bg-theme text-theme">
+      <section id="certifications" className="py-20 bg-theme text-theme">
         <Certifications />
       </section>
 
       {/* CONTACT */}
       <section
         id="contact"
-        className="py-24 bg-theme-soft backdrop-blur-xl border-t border-card"
+        className="py-20 bg-theme-soft backdrop-blur-xl border-t border-card"
       >
         <Contact />
       </section>
