@@ -8,29 +8,33 @@ export default function Contact() {
 
   // Spiral Confetti (God Mode)
   const launchGodConfetti = () => {
-    const duration = 2 * 1000;
-    const end = Date.now() + duration;
+  // make sure this only runs in the browser
+  if (typeof window === "undefined") return;
 
-    (function frame() {
-      confetti({
-        particleCount: 4,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 },
-      });
+  const duration = 2 * 1000;
+  const end = Date.now() + duration;
 
-      confetti({
-        particleCount: 4,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 },
-      });
+  (function frame() {
+    confetti({
+      particleCount: 4,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+    });
 
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    })();
-  };
+    confetti({
+      particleCount: 4,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+};
+
 
   const playChime = () => {
     const audio = new Audio(
