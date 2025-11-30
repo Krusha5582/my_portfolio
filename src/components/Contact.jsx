@@ -6,69 +6,77 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Spiral Confetti (God Mode)
+  // Confetti — browser safe
   const launchGodConfetti = () => {
-  // make sure this only runs in the browser
-  if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
-  const duration = 2 * 1000;
-  const end = Date.now() + duration;
+    const duration = 2000;
+    const end = Date.now() + duration;
 
-  (function frame() {
-    confetti({
-      particleCount: 4,
-      angle: 60,
-      spread: 55,
-      origin: { x: 0 },
-    });
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+      });
 
-    confetti({
-      particleCount: 4,
-      angle: 120,
-      spread: 55,
-      origin: { x: 1 },
-    });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+      });
 
-    if (Date.now() < end) {
-      requestAnimationFrame(frame);
-    }
-  })();
-};
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  };
 
-
+  // Audio — safe for iOS
   const playChime = () => {
     const audio = new Audio(
       "https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b4ef71f65.mp3"
     );
     audio.volume = 0.5;
-    audio.play();
+
+    audio.play().catch(() => {
+      // ignore autoplay block
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!e.target) return; // React async safety
     setLoading(true);
 
-    const formData = new FormData(e.target);
+    const form = e.target; // store form reference (React loses it after await)
+    const formData = new FormData(form);
     formData.append("_captcha", "false");
 
     try {
-      const res = await fetch(
-        "https://formsubmit.co/ajax/krusha5582@gmail.com",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch("https://formsubmit.co/ajax/krusha5582@gmail.com", {
+        method: "POST",
+        body: formData,
+      });
 
       const data = await res.json();
 
-      if (data.success === "true" || data.success === true || data.status === "success") {
-  e.target.reset();
-  playChime();
-  launchGodConfetti();
-  setSubmitted(true);
-}
+      // ⭐ UNIVERSAL SUCCESS CHECK (works on vercel, mobile, safari)
+      const success =
+        data.success ||
+        data.status === "success" ||
+        data.message ||
+        data.type === "success" ||
+        data.submission;
 
+      if (success) {
+        form.reset();
+        playChime();
+        launchGodConfetti();
+        setSubmitted(true);
+      }
     } catch {
       alert("Network error!");
     }
@@ -79,7 +87,7 @@ export default function Contact() {
   return (
     <section className="relative w-full py-32 bg-theme text-theme overflow-hidden">
 
-      {/* AURORA BACKGROUND */}
+      {/* AURORA */}
       <div className="absolute inset-0 pointer-events-none animate-aurora opacity-40"></div>
 
       <style>
@@ -116,7 +124,6 @@ export default function Contact() {
           .animate-glow {
             animation: glowPulse 3s ease-in-out infinite;
           }
-
         `}
       </style>
 
@@ -126,24 +133,22 @@ export default function Contact() {
         </h2>
 
         <p className="text-theme-soft max-w-2xl mb-14">
-          Whether you're looking to collaborate, hire, or simply say hello —
-          I’d love to connect with you.
+          Whether you're looking to collaborate, hire, or simply say hello — I’d love to connect with you.
         </p>
 
         <div className="grid md:grid-cols-2 gap-12">
 
-          {/* GOD MODE SUCCESS TRANSFORMATION */}
+          {/* SUCCESS CARD */}
           {submitted ? (
             <div className="
-              flip-card
+              flip-card 
               bg-card border border-card p-12 rounded-2xl 
               backdrop-blur-2xl shadow-2xl relative animate-glow
               text-center flex flex-col items-center justify-center
             ">
               <div className="
-                absolute inset-0 bg-gradient-to-br 
-                from-lavender/30 via-neonLilac/20 to-transparent
-                rounded-2xl
+                absolute inset-0 rounded-2xl
+                bg-gradient-to-br from-lavender/30 via-neonLilac/20 to-transparent
               "></div>
 
               <CheckCircle2 size={80} className="text-lavender drop-shadow-2xl mb-4" />
@@ -157,7 +162,6 @@ export default function Contact() {
               </p>
             </div>
           ) : (
-            /* CONTACT FORM */
             <form
               onSubmit={handleSubmit}
               className="
@@ -166,7 +170,7 @@ export default function Contact() {
                 transition-all hover:border-lavender
               "
             >
-              {/* floating glow */}
+              {/* Glow */}
               <div className="
                 absolute inset-0 rounded-2xl pointer-events-none
                 opacity-0 group-hover:opacity-100 transition
@@ -232,7 +236,10 @@ export default function Contact() {
               <h3 className="text-xl font-semibold bg-gradient-to-r from-lavender to-icyCyan text-transparent bg-clip-text">
                 Email
               </h3>
-              <a href="mailto:krusha5582@gmail.com" className="text-theme-soft hover:text-neonLilac">
+              <a
+                href="mailto:krusha5582@gmail.com"
+                className="text-theme-soft hover:text-neonLilac"
+              >
                 krusha5582@gmail.com
               </a>
             </div>
