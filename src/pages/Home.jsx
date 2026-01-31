@@ -10,65 +10,110 @@ import Contact from "../components/Contact";
 
 export default function Home() {
   return (
-    <div className="page-transition bg-theme text-theme">
+    <>
+      {/* GLOBAL SYSTEM PLANE */}
+      <div className="min-h-screen text-white relative overflow-x-hidden">
+        
+        {/* CONTINUOUS ENVIRONMENT LAYER */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          {/* Primary gradient plane */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/95 to-slate-925" />
+          
+          {/* Engineering grid overlay */}
+          <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(135deg,rgba(148,163,184,0.12)_1px,transparent_1px),linear-gradient(rgba(148,163,184,0.12)_1px,transparent_1px)] bg-[size:80px_80px]" />
+          
+          {/* Radial focus points */}
+          <div className="absolute inset-0 opacity-[0.1]">
+            <div className="absolute top-20 left-20 w-96 h-96 bg-emerald-900/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+            <div className="absolute bottom-40 right-32 w-80 h-80 bg-slate-900/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+          </div>
+        </div>
 
-      {/* HERO */}
-      <section id="hero" className="pt-20 bg-theme text-theme">
-        <Hero />
-      </section>
+        {/* SCROLLING CONTENT PLANE */}
+        <div className="relative z-10">
+          
+          {/* HERO - SYSTEM ENTRYPOINT */}
+          <section id="hero" className="pt-24 lg:pt-32 min-h-screen flex items-center justify-center">
+            <Hero />
+          </section>
 
-      {/* ABOUT */}
-      <section id="about" className="py-20 bg-theme text-theme">
-        <About />
-      </section>
+          {/* SYSTEMS THINKING INTERFACE */}
+          <section id="about" className="pb-32 lg:pb-40">
+            <About />
+          </section>
 
-      {/* SKILLS */}
-      <section
-        id="skills"
-        className="py-20 bg-theme-soft backdrop-blur-xl border-y border-card"
-      >
-        <Skills />
-      </section>
+          {/* SECURE • ANALYZE • BUILD - CONCEPTUAL CORE
+          <section id="sab" className="py-28 lg:py-36 border-b border-slate-800/40">
+            <SecureAnalyzeBuild />
+          </section> */}
 
-      {/* SECURE • ANALYZE • BUILD */}
-      <section id="sab" className="py-20 bg-theme text-theme">
-        <SecureAnalyzeBuild />
-      </section>
+          {/* PRODUCTION SYSTEMS - NARRATIVE PEAK */}
+          <section 
+            id="projects" 
+            className="py-32 lg:py-44 border-y border-slate-800/30 backdrop-blur-xl"
+          >
+            <Projects />
+          </section>
 
-      {/* FEATURED PROJECTS */}
-      <section
-        id="projects"
-        className="py-20 bg-theme-soft backdrop-blur-xl border-y border-card"
-      >
-        <Projects />
-      </section>
+          {/* OPERATIONAL LAYERS */}
+          <section id="experience" className="py-28 lg:py-36">
+            <Experience />
+          </section>
 
-      {/* EXPERIENCE */}
-      <section id="experience" className="py-20 bg-theme text-theme">
-        <Experience />
-      </section>
+          {/* CAPABILITY MATRIX */}
+          <section id="skills" className="py-24 lg:py-32 border-y border-slate-800/40">
+            <Skills />
+          </section>
 
-      {/* EDUCATION */}
-      <section
-        id="education"
-        className="py-20 bg-theme-soft backdrop-blur-xl border-y border-card"
-      >
-        <Education />
-      </section>
+          {/* FOUNDATION SPECIFICATION */}
+          <section id="education" className="py-24 lg:py-32">
+            <Education />
+          </section>
 
-      {/* CERTIFICATIONS */}
-      <section id="certifications" className="py-20 bg-theme text-theme">
-        <Certifications />
-      </section>
+          {/* VALIDATION SURFACE */}
+          <section id="certifications" className="py-20 lg:py-28 border-y border-slate-800/30">
+            <Certifications />
+          </section>
 
-      {/* CONTACT */}
-      <section
-        id="contact"
-        className="py-20 bg-theme-soft backdrop-blur-xl border-t border-card"
-      >
-        <Contact />
-      </section>
+          {/* SYSTEM INTERFACE */}
+          <section id="contact" className="py-32 lg:py-44 min-h-screen flex items-center justify-center border-t border-slate-800/40">
+            <Contact />
+          </section>
 
-    </div>
+        </div>
+
+      </div>
+
+      {/* GLOBAL ENGINEERING CONTROLS */}
+      <style jsx global>{`
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(148,163,184,0.4) transparent;
+        }
+        
+        *::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+        
+        *::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        *::-webkit-scrollbar-thumb {
+          background: rgba(148,163,184,0.4);
+          border-radius: 3px;
+        }
+        
+        *::-webkit-scrollbar-thumb:hover {
+          background: rgba(148,163,184,0.6);
+        }
+        
+        html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 100px;
+        }
+      `}</style>
+    </>
   );
 }

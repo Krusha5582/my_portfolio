@@ -1,57 +1,16 @@
 import { useState } from "react";
 import { Mail, Github, Linkedin, Instagram, CheckCircle2 } from "lucide-react";
-import confetti from "canvas-confetti";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Confetti — browser safe
-  const launchGodConfetti = () => {
-    if (typeof window === "undefined") return;
-
-    const duration = 2000;
-    const end = Date.now() + duration;
-
-    (function frame() {
-      confetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 },
-      });
-
-      confetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 },
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    })();
-  };
-
-  // Audio — safe for iOS
-  const playChime = () => {
-    const audio = new Audio(
-      "https://cdn.pixabay.com/download/audio/2022/03/15/audio_3b4ef71f65.mp3"
-    );
-    audio.volume = 0.5;
-
-    audio.play().catch(() => {
-      // ignore autoplay block
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!e.target) return; // React async safety
+    if (!e.target) return;
     setLoading(true);
 
-    const form = e.target; // store form reference (React loses it after await)
+    const form = e.target;
     const formData = new FormData(form);
     formData.append("_captcha", "false");
 
@@ -62,8 +21,6 @@ export default function Contact() {
       });
 
       const data = await res.json();
-
-      // ⭐ UNIVERSAL SUCCESS CHECK (works on vercel, mobile, safari)
       const success =
         data.success ||
         data.status === "success" ||
@@ -73,8 +30,6 @@ export default function Contact() {
 
       if (success) {
         form.reset();
-        playChime();
-        launchGodConfetti();
         setSubmitted(true);
       }
     } catch {
@@ -85,190 +40,145 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative w-full py-32 bg-theme text-theme overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-925 to-black text-white">
+      <div className="max-w-4xl mx-auto px-6 py-20 lg:py-28">
+        
+        {/* HERO - MATCHES RESUME PAGE TONE */}
+        <header className="mb-24 text-left">
+          <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-none text-slate-50">
+            Get In Touch
+          </h1>
+          <p className="text-xl lg:text-2xl text-slate-400 font-light max-w-2xl leading-relaxed">
+            For serious inquiries about collaboration or opportunities.
+          </p>
+        </header>
 
-      {/* AURORA */}
-      <div className="absolute inset-0 pointer-events-none animate-aurora opacity-40"></div>
-
-      <style>
-        {`
-          @keyframes aurora {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-          .animate-aurora {
-            background: linear-gradient(
-              120deg,
-              rgba(185,129,255,0.25),
-              rgba(75,255,255,0.25),
-              rgba(255,170,220,0.25)
-            );
-            background-size: 250% 250%;
-            animation: aurora 10s ease infinite;
-          }
-
-          @keyframes flipIn {
-            0% { transform: rotateY(90deg); opacity: 0; }
-            100% { transform: rotateY(0); opacity: 1; }
-          }
-          .flip-card {
-            animation: flipIn 0.6s ease-out forwards;
-          }
-
-          @keyframes glowPulse {
-            0% { box-shadow: 0 0 20px rgba(185,129,255,0.3); }
-            50% { box-shadow: 0 0 40px rgba(185,129,255,0.6); }
-            100% { box-shadow: 0 0 20px rgba(185,129,255,0.3); }
-          }
-          .animate-glow {
-            animation: glowPulse 3s ease-in-out infinite;
-          }
-        `}
-      </style>
-
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-10 bg-gradient-to-r from-lavender via-neonLilac to-icyCyan text-transparent bg-clip-text">
-          Let's Connect
-        </h2>
-
-        <p className="text-theme-soft max-w-2xl mb-14">
-          Whether you're looking to collaborate, hire, or simply say hello — I’d love to connect with you.
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-12">
-
-          {/* SUCCESS CARD */}
+        <div className="grid lg:grid-cols-2 gap-12">
+          
+          {/* FORM - CLEAN + FUNCTIONAL */}
           {submitted ? (
-            <div className="
-              flip-card 
-              bg-card border border-card p-12 rounded-2xl 
-              backdrop-blur-2xl shadow-2xl relative animate-glow
-              text-center flex flex-col items-center justify-center
-            ">
-              <div className="
-                absolute inset-0 rounded-2xl
-                bg-gradient-to-br from-lavender/30 via-neonLilac/20 to-transparent
-              "></div>
-
-              <CheckCircle2 size={80} className="text-lavender drop-shadow-2xl mb-4" />
-
-              <h3 className="text-2xl font-semibold text-white mb-2">
-                Message Sent Successfully!
+            <div className="bg-slate-900 border-2 border-slate-800 rounded-2xl p-12 lg:p-16 text-center">
+              <CheckCircle2 className="w-16 h-16 text-emerald-400 mx-auto mb-6" />
+              <h3 className="text-2xl lg:text-3xl font-black mb-4 text-slate-100">
+                Message Received
               </h3>
-
-              <p className="text-theme-soft max-w-sm">
-                Thank you for reaching out. I’ll get back to you soon.
+              <p className="text-lg text-slate-400 font-light max-w-sm mx-auto leading-relaxed">
+                Thanks for reaching out. I'll respond within 24 hours.
               </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-8 px-8 py-3 bg-slate-800 hover:bg-slate-700 border-2 border-slate-700 rounded-xl font-mono uppercase tracking-wider text-sm font-semibold text-slate-200 hover:text-white hover:border-slate-600 transition-all"
+              >
+                Send Another
+              </button>
             </div>
           ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="
-                bg-card border border-card p-8 rounded-2xl shadow-xl 
-                backdrop-blur-xl space-y-6 relative group
-                transition-all hover:border-lavender
-              "
-            >
-              {/* Glow */}
-              <div className="
-                absolute inset-0 rounded-2xl pointer-events-none
-                opacity-0 group-hover:opacity-100 transition
-                bg-gradient-to-br from-lavender/20 via-neonLilac/10 to-transparent
-              "></div>
-
+            <form onSubmit={handleSubmit} className="bg-slate-900 border-2 border-slate-800 rounded-2xl p-8 lg:p-10 space-y-6">
               <div>
-                <label className="text-sm font-medium text-theme">Your Name</label>
+                <label className="text-sm font-mono uppercase tracking-wider text-slate-400 mb-2 block">
+                  Your Name
+                </label>
                 <input
                   type="text"
                   name="name"
                   required
-                  className="
-                    w-full mt-1 px-4 py-3 rounded-xl bg-theme-soft border border-card 
-                    focus:ring-2 focus:ring-lavender outline-none transition
-                  "
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-slate-200 placeholder-slate-500 focus:ring-2 focus:ring-slate-600 focus:border-transparent transition-all"
+                  disabled={loading}
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium text-theme">Email</label>
+                <label className="text-sm font-mono uppercase tracking-wider text-slate-400 mb-2 block">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
                   required
-                  className="
-                    w-full mt-1 px-4 py-3 rounded-xl bg-theme-soft border border-card 
-                    focus:ring-2 focus:ring-lavender outline-none transition
-                  "
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-slate-200 placeholder-slate-500 focus:ring-2 focus:ring-slate-600 focus:border-transparent transition-all"
+                  disabled={loading}
                 />
               </div>
 
               <div>
-                <label className="text-sm font-medium text-theme">Message</label>
+                <label className="text-sm font-mono uppercase tracking-wider text-slate-400 mb-2 block">
+                  Message
+                </label>
                 <textarea
                   name="message"
-                  rows="4"
+                  rows="5"
                   required
-                  className="
-                    w-full mt-1 px-4 py-3 rounded-xl bg-theme-soft border border-card 
-                    focus:ring-2 focus:ring-lavender outline-none transition
-                  "
+                  className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-slate-200 placeholder-slate-500 focus:ring-2 focus:ring-slate-600 focus:border-transparent transition-all resize-vertical"
+                  disabled={loading}
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="
-                  w-full px-6 py-3 rounded-xl text-white font-medium
-                  bg-gradient-to-r from-lavender to-neonLilac
-                  hover:shadow-xl transition-all disabled:opacity-50
-                "
+                className="w-full bg-slate-800 hover:bg-slate-700 border-2 border-slate-700 px-8 py-4 rounded-xl font-mono uppercase tracking-wider text-sm font-semibold text-slate-200 hover:text-white hover:border-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
               >
-                {loading ? "Sending…" : "Send Message"}
+                {loading ? "Sending..." : "Send Message"}
               </button>
             </form>
           )}
 
-          {/* SOCIALS */}
-          <div className="flex flex-col justify-center space-y-10">
+          {/* CONTACT OPTIONS - SAME VISUAL LANGUAGE */}
+          <div className="lg:pt-8 space-y-12">
             <div>
-              <h3 className="text-xl font-semibold bg-gradient-to-r from-lavender to-icyCyan text-transparent bg-clip-text">
-                Email
+              <h3 className="text-2xl lg:text-3xl font-black mb-6 text-slate-100">
+                Direct Contact
               </h3>
-              <a
-                href="mailto:krusha5582@gmail.com"
-                className="text-theme-soft hover:text-neonLilac"
-              >
-                krusha5582@gmail.com
-              </a>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold bg-gradient-to-r from-pastelPink to-neonLilac text-transparent bg-clip-text">
-                Socials
-              </h3>
-
-              <div className="flex gap-6 mt-3">
-                <a href="https://linkedin.com/in/krusha-parikh" target="_blank" className="hover:text-neonLilac">
-                  <Linkedin size={24} />
-                </a>
-                <a href="https://github.com/Krusha5582" target="_blank" className="hover:text-neonLilac">
-                  <Github size={24} />
-                </a>
-                <a href="https://instagram.com/notesby.krxsha" target="_blank" className="hover:text-neonLilac">
-                  <Instagram size={24} />
-                </a>
-                <a href="mailto:krusha5582@gmail.com" className="hover:text-neonLilac">
-                  <Mail size={24} />
+              <div className="space-y-4">
+                <a
+                  href="mailto:krusha5582@gmail.com"
+                  className="group block p-6 border-2 border-slate-800/50 hover:border-slate-700 hover:bg-slate-900/50 rounded-xl transition-all"
+                >
+                  <div className="flex items-center gap-3 text-lg font-semibold text-slate-300 group-hover:text-slate-100">
+                    <Mail className="w-6 h-6 text-emerald-400 group-hover:scale-110 transition-transform" />
+                    krusha5582@gmail.com
+                  </div>
                 </a>
               </div>
             </div>
 
+            <div>
+              <h3 className="text-2xl lg:text-3xl font-black mb-6 text-slate-100">
+                Social
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <a
+                  href="https://linkedin.com/in/krusha-parikh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 p-4 border-2 border-slate-800/50 hover:border-slate-600 hover:bg-slate-900/50 rounded-xl transition-all"
+                >
+                  <Linkedin className="w-5 h-5 text-slate-400 group-hover:text-blue-400" />
+                  <span className="font-mono text-sm text-slate-400 group-hover:text-slate-200">LinkedIn</span>
+                </a>
+                <a
+                  href="https://github.com/Krusha5582"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 p-4 border-2 border-slate-800/50 hover:border-slate-600 hover:bg-slate-900/50 rounded-xl transition-all"
+                >
+                  <Github className="w-5 h-5 text-slate-400 group-hover:text-slate-200" />
+                  <span className="font-mono text-sm text-slate-400 group-hover:text-slate-200">GitHub</span>
+                </a>
+                <a
+                  href="https://instagram.com/notesby.krxsha"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-3 p-4 border-2 border-slate-800/50 hover:border-slate-600 hover:bg-slate-900/50 rounded-xl transition-all"
+                >
+                  <Instagram className="w-5 h-5 text-slate-400 group-hover:text-pink-400" />
+                  <span className="font-mono text-sm text-slate-400 group-hover:text-slate-200">Instagram</span>
+                </a>
+              </div>
+            </div>
           </div>
-
         </div>
       </div>
-    </section>
+    </div>
   );
 }
